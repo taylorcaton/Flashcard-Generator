@@ -3,4 +3,16 @@ var BasicCard = function(front, back){
   this.back = back;
 }
 
+BasicCard.prototype.printCard = function() {
+
+  console.log(
+`
+*********************************************
+FRONT: ${this.front}
+---------------------------------------------
+ANSWER: ${this.back}
+*********************************************`)
+
+};
+
 module.exports = BasicCard;

@@ -12,4 +12,16 @@ ClozeCard.prototype.getPartial = function() {
     }
 };
 
+ClozeCard.prototype.printCard = function() {
+
+  console.log(
+`
+*********************************************
+QUESTION: ${this.partial}
+---------------------------------------------
+ANSWER: ${this.cloze}
+*********************************************`)
+
+};
+
 module.exports = ClozeCard;

@@ -1,0 +1,14 @@
+{
+  "cards":[
+    {
+      "type": "Basic",
+      "front": "What year was the N64 released in America?",
+      "back": "1996"
+    },
+    {
+      "type": "Cloze",
+      "text": "The Super Mario Brothers are Mario and Luigi",
+      "cloze": "Luigi"
+    }
+  ]
+}
