@@ -3,6 +3,8 @@ var ClozeCard = require('./ClozeCard.js');
 var fs = require('fs');
 var inquirer = require('inquirer');
 var cards = [];
+var jsonfile = require('jsonfile')
+var file = 'cards.json'
 
 function start(){
   inquirer.prompt([
@@ -28,6 +30,11 @@ function start(){
           console.log("Removing a Card");
           removeCard();
           break;
+        
+        case "Restore Original Cards":
+          console.log("Restoring OG Cards");
+          //restoreCards();
+          break;
 
         case "Exit":
           return; 
@@ -41,6 +48,7 @@ function start(){
 
 function buildCards(){
   var flashCards = require('./cards.json');
+  cardsJSON = flashCards;
 
   flashCards.cards.forEach(function(card, index) { //Reads the cards json and builds the arrays with Card objects
     if(card.type === "Basic"){
@@ -89,9 +97,9 @@ function addCard(){
         name: "back",
         message: "Input the answer (Back of the Card)"
       }
-    ]).then(function(answers){
-      
+    ]).then(function(answers){      
       cards.push(new BasicCard(answers.front, answers.back))
+      writeCardsToJSON();
       start();
     })
 
@@ -117,6 +125,7 @@ function addCard(){
         addCloze();
       }else{
         cards.push(newCloze)
+        writeCardsToJSON();
         start();
       }
     })
@@ -148,11 +157,30 @@ function removeCard(){
   ]).then(function(answer){
     var index = parseInt(answer.choice.substring(0,answer.choice.indexOf(".")));
     console.log(`Removing ${index}`)
-    cards.splice(index-1,1)
+    cards.splice(index-1,1);
+    writeCardsToJSON();
     start();
   })
+}
 
-  
+function writeCardsToJSON(){ //updates the cards.json with the contents of cards array
+
+  var cardsJSON = [];
+  cards.forEach(function(card){
+    if(card.cloze !== undefined){
+      cardsJSON.push({type:"Cloze", text: card.fullText , cloze: card.cloze});
+    }else{
+      cardsJSON.push({type:"Basic", front: card.front, back: card.back });
+    }
+  })
+
+  var obj = {cards: cardsJSON};
+  jsonfile.writeFile(file, obj, {spaces: 2}, function(err) {
+      console.error(err)
+  })
+
+
+
 }
 
 buildCards();

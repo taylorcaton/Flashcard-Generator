@@ -19,6 +19,7 @@
   "homepage": "https://github.com/taylorcaton/Flashcard-Generator#readme",
   "dependencies": {
     "chalk": "^2.1.0",
-    "inquirer": "^3.2.1"
+    "inquirer": "^3.2.1",
+    "jsonfile": "^3.0.1"
   }
 }
