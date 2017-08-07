@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 var BasicCard = function(front, back){
   this.front = front;
   this.back = back;
@@ -5,13 +7,21 @@ var BasicCard = function(front, back){
 
 BasicCard.prototype.printCard = function() {
 
+  var stars = "*BASIC****";
+  var dashes = "----------";
+
+  for (var index = 0; index < this.front.length; index++) {
+    stars+="*";
+    dashes+="-"
+  }
+
   console.log(
 `
-*********************************************
-FRONT: ${this.front}
----------------------------------------------
-ANSWER: ${this.back}
-*********************************************`)
+${chalk.red(stars)}
+${chalk.yellow('FRONT:')} ${this.front}
+${dashes}
+${chalk.yellow('BACK:')} ${this.back}
+${chalk.red(stars)}`)
 
 };
 

@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 var ClozeCard = function(text, cloze){
   this.cloze = cloze;
   this.fullText = text;
@@ -14,13 +16,21 @@ ClozeCard.prototype.getPartial = function() {
 
 ClozeCard.prototype.printCard = function() {
 
+var stars = "*CLOZE****";
+var dashes = "----------";
+
+for (var index = 0; index < this.partial.length; index++) {
+  stars+="*";
+  dashes+="-"
+}
+
   console.log(
 `
-*********************************************
-QUESTION: ${this.partial}
----------------------------------------------
-ANSWER: ${this.cloze}
-*********************************************`)
+${chalk.green(stars)}
+${chalk.yellow('QUESTION:')} ${this.partial}
+${dashes}
+${chalk.yellow('ANSWER:')} ${this.cloze}
+${chalk.green(stars)}`)
 
 };
 
