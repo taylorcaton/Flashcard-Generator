@@ -24,4 +24,8 @@ ANSWER: ${this.cloze}
 
 };
 
+ClozeCard.prototype.getQuestion = function(){
+  return this.partial;
+}
+
 module.exports = ClozeCard;

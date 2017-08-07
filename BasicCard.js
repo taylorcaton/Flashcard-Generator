@@ -15,4 +15,8 @@ ANSWER: ${this.back}
 
 };
 
+BasicCard.prototype.getQuestion = function(){
+  return this.front;
+}
+
 module.exports = BasicCard;

@@ -26,7 +26,7 @@ function start(){
         
         case "Remove Card":
           console.log("Removing a Card");
-          //removeCard();
+          removeCard();
           break;
 
         case "Exit":
@@ -98,7 +98,28 @@ function addCard(){
   }
 
   function addCloze(){
+    inquirer.prompt([
+      {
+        name: "text",
+        message: "Input the question full text (Front of the Card)"
+      },
+      {
+        name: "cloze",
+        message: "Input the word to hide (Back of the Card)"
+      }
+    ]).then(function(answers){
+      
+      var newCloze = new ClozeCard(answers.text, answers.cloze);
+      newCloze.getPartial();
 
+      if(newCloze.partial === ""){
+        console.log(`${answers.cloze} was NOT found in ${answers.text}`);
+        addCloze();
+      }else{
+        cards.push(newCloze)
+        start();
+      }
+    })
   }
 
 }
@@ -108,6 +129,30 @@ function viewCards(){
     card.printCard();
   })
   start();
+}
+
+function removeCard(){
+  var questions = [];
+
+  cards.forEach(function(card, index){
+    questions.push(`${index+1}. ${card.getQuestion()}`);
+  })
+  
+  inquirer.prompt([
+    {
+      type: "list",
+      choices: questions,
+      message: "Which question would you like to remove? (type the number)",
+      name: "choice"
+    }
+  ]).then(function(answer){
+    var index = parseInt(answer.choice.substring(0,answer.choice.indexOf(".")));
+    console.log(`Removing ${index}`)
+    cards.splice(index-1,1)
+    start();
+  })
+
+  
 }
 
 buildCards();
