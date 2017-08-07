@@ -9,6 +9,16 @@
       "type": "Cloze",
       "text": "The Super Mario Brothers are Mario and Luigi",
       "cloze": "Luigi"
+    },
+    {
+      "type": "Basic",
+      "front": "Alien inspired which long-running Nintendo franchise?",
+      "back": "Metroid"
+    },
+    {
+      "type": "Cloze",
+      "text": "In the film Ghostbusters II, the protagonists used a modified NES Advantage controller to guide the Statue of Liberty through New York.",
+      "cloze": "Ghostbusters II"
     }
   ]
 }
