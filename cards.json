@@ -19,11 +19,6 @@
       "type": "Cloze",
       "text": "In the film Ghostbusters II, the protagonists used a modified NES Advantage controller to guide the Statue of Liberty through New York.",
       "cloze": "Ghostbusters II"
-    },
-    {
-      "type": "Cloze",
-      "text": "My Name is Taylor",
-      "cloze": "Taylor"
     }
   ]
 }

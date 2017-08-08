@@ -11,7 +11,7 @@ function start(){
     {
       name: "start",
       type: "list",
-      choices: ["View Cards", "Add Card", "Remove Card", "Exit"],
+      choices: ["View Cards", "Add Card", "Remove Card", "Restore Original Cards", "Exit"],
       message: "What would you like to do?"
     }
   ]).then(function(answer){
@@ -32,8 +32,8 @@ function start(){
           break;
         
         case "Restore Original Cards":
-          console.log("Restoring OG Cards");
-          //restoreCards();
+          console.log("Restoring OG set");
+          restoreCards();
           break;
 
         case "Exit":
@@ -80,8 +80,11 @@ function addCard(){
         addCloze();
         break;
 
-      default:
+      case "Back":
         start();
+        break;
+      
+      default:
         break;
     }
   });//End initial prompt
@@ -176,11 +179,22 @@ function writeCardsToJSON(){ //updates the cards.json with the contents of cards
 
   var obj = {cards: cardsJSON};
   jsonfile.writeFile(file, obj, {spaces: 2}, function(err) {
-      console.error(err)
+      if(err) console.error(err)
   })
+}
 
+function restoreCards(){
 
+  var backupFile = 'cardsBackup.json';
+  
+  jsonfile.readFile(backupFile, function(err, obj) {
 
+    jsonfile.writeFile(file, obj, {spaces: 2}, function(err) {
+        if(err) console.error(err);
+    })
+        
+  });
+ 
 }
 
 buildCards();
