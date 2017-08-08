@@ -7,8 +7,8 @@
     },
     {
       "type": "Cloze",
-      "text": "The Super Mario Brothers are Mario and Luigi",
-      "cloze": "Luigi"
+      "text": "Prior to 1993 Princess Peach was known as Princess Toadstool",
+      "cloze": "Toadstool"
     },
     {
       "type": "Basic",
@@ -19,6 +19,11 @@
       "type": "Cloze",
       "text": "In the film Ghostbusters II, the protagonists used a modified NES Advantage controller to guide the Statue of Liberty through New York.",
       "cloze": "Ghostbusters II"
+    },
+    {
+      "type": "Basic",
+      "front": "Mario's first video game appearance.",
+      "back": "Donkey Kong (1981) as 'Jumpman'"
     }
   ]
 }
